@@ -30,7 +30,7 @@ Example:
 
 <dom-module id="locals-avatar">
   <template>
-   <locals-object config="{{config}}" state="{{state}}"></locals-object>
+   <locals-object config="{{config}}" state="{{state}}" on-state-changed="statechanged"></locals-object>
   </template>
 
   <script>
@@ -57,44 +57,63 @@ Example:
         this.config = {
           layers: [{
 
-            "name": "skeleton",
-            "options": [{
-              "name": "whiteskeleton",
-              "tile": this.resolveUrl("images/white.png")
-            }, {
-              "name": "redskeleton",
-              "tile": this.resolveUrl("images/red.png")
-            }, {
-              "name": "greenskeleton",
-              "tile": this.resolveUrl("images/green.png")
-            }]
-          }, {
-            "name": "headband",
-            "options": [{
-              "name": "empty",
-              "tile": this.resolveUrl("images/empty.png")
-            }, {
-              "name": "band1",
-              "tile": this.resolveUrl("images/band1.png")
-            }, {
-              "name": "band2",
-              "tile": this.resolveUrl("images/band2.png")
-            }]
-          }, {
-            "name": "suit",
-            "options": [{
-              "name": "empty",
-              "tile": this.resolveUrl("images/empty.png")
-            }, {
-              "name": "bluesuit",
-              "tile": this.resolveUrl("images/bluesuit.png")
-            }, {
-              "name": "greensuit",
-              "tile": this.resolveUrl("images/greensuit.png")
-            }]
-          }],
-          "objectconfig": [{selectedtile: 0, 1, 0]
+              "name": "skeleton",
+              "options": [{
+                "name": "whiteskeleton",
+                "tile": this.resolveUrl("images/white.png"),
+                "group": "red"
+              }, {
+                "name": "redskeleton",
+                "tile": this.resolveUrl("images/red.png"),
+                "group": "green"
+              }, {
+                "name": "greenskeleton",
+                "tile": this.resolveUrl("images/green.png"),
+                "group": "green"
+              }]
+              
+             
+            }
+
+            , {
+
+              "name": "headband",
+              "options": [{
+                "name": "empty",
+                "tile": this.resolveUrl("images/empty.png")
+              }, {
+                "name": "band1",
+                "tile": this.resolveUrl("images/band1.png")
+              }, {
+                "name": "band2",
+                "tile": this.resolveUrl("images/band2.png")
+              }]
+
+            }
+
+
+            , {
+
+
+              "name": "suit",
+              "options": [{
+                "name": "empty",
+                "tile": this.resolveUrl("images/empty.png")
+              }, {
+                "name": "bluesuit",
+                "tile": this.resolveUrl("images/bluesuit.png")
+              }, {
+                "name": "greensuit",
+                "tile": this.resolveUrl("images/greensuit.png")
+              }]
+            }
+          ]
         };
+
+        if (!this.state){
+          // default state
+          this.state = [0, 0, 0];
+        }
 
       },
 
@@ -113,6 +132,10 @@ Example:
         //
         // Use this to clean up anything you did in `attached`.
       },
+
+      statechanged: function(){
+        console.log('State changed');
+      }
 
 
     });
