@@ -7,6 +7,7 @@ glob("./images/avatarmale/*", null, function(er, files) {
 
 	var buffer = [];
 
+	files.sort();
 
 	files.forEach(function(file) {
 
@@ -15,55 +16,59 @@ glob("./images/avatarmale/*", null, function(er, files) {
 		var parts = filename.split('-');
 
 		// format 
-		// 0 type
-		// 1 layer
-		// 2 variant
-		// 3 color 
+		// 1 type
+		// 2 layer
+		// 3 variant
+		// 4 color 
+
+		var index_layer = 2;
+		var index_variant = 3;
+		var index_color = 4;
 
 
-		if (!buffer[parts[1]]) {
-			buffer[parts[1]] = {
-				name: parts[1],
+		if (!buffer[parts[index_layer]]) {
+			buffer[parts[index_layer]] = {
+				name: parts[index_layer],
 				options: []
 			};
 		}
 		//if (!buffer[parts[1]].options[parts[2]]){
-			var haystack = buffer[parts[1]].options;
-			var needle = parts[2];
-			//console.log('c',haystack,needle,haystack[needle]);
-//			if (!buffer[parts[1]].options[parts[2]]){
-//				buffer[parts[1]].options[parts[2]] = {};
-//			}
-			buffer[parts[1]].options.push({
-//				name : filename,
-				tile : '__this.resolveUrl("' + path.dirname(file) + '/' + filename + '.png")__',
-				//variant: parts[2],
-				group : parts[3]
-			});
+		var haystack = buffer[parts[index_layer]].options;
+		var needle = parts[index_variant];
+		//console.log('c',haystack,needle,haystack[needle]);
+		//			if (!buffer[parts[1]].options[parts[2]]){
+		//				buffer[parts[1]].options[parts[2]] = {};
+		//			}
+		buffer[parts[index_layer]].options.push({
+			//				name : filename,
+			tile: '__this.resolveUrl("' + path.dirname(file) + '/' + filename + '.png")__',
+			//variant: parts[2],
+			group: parts[index_color]
+		});
 
 
 	});
 
-// now the config layers are in an object. Convert this to an array
+	// now the config layers are in an object. Convert this to an array
 
-var buffer2 = {layers: []};
-Object.keys(buffer).forEach(function(key){
-	buffer2.layers.push(buffer[key]);
-//	console.log(util.inspect(buffer[key],false,null));
-//	console.log('-----');
-})
+	var buffer2 = {
+		layers: []
+	};
+	Object.keys(buffer).forEach(function(key) {
+		buffer2.layers.push(buffer[key]);
+		//	console.log(util.inspect(buffer[key],false,null));
+		//	console.log('-----');
+	})
 
-var str = util.inspect(buffer2,false,null);
+	var str = util.inspect(buffer2, false, null);
 
-str = str.replace(/__\'/g,'');
-str = str.replace(/\'__/g,'');
-console.log(str);
-
-
-
-//var config=
+	str = str.replace(/__\'/g, '');
+	str = str.replace(/\'__/g, '');
+	console.log(str);
 
 
+
+	//var config=
 
 
 
