@@ -6,6 +6,7 @@ var util = require('util');
 glob("./images/avatarmale/*", null, function(er, files) {
 
 	var buffer = [];
+	var colors = {};
 
 	files.sort();
 
@@ -25,6 +26,10 @@ glob("./images/avatarmale/*", null, function(er, files) {
 		var index_variant = 3;
 		var index_color = 4;
 
+		colors[parts[index_color]] = {
+			name: parts[index_color],
+			class: parts[index_color]
+		};
 
 		if (!buffer[parts[index_layer]]) {
 			buffer[parts[index_layer]] = {
@@ -50,18 +55,27 @@ glob("./images/avatarmale/*", null, function(er, files) {
 
 	});
 
+
+
 	// now the config layers are in an object. Convert this to an array
 
 	var buffer2 = {
-		layers: []
+		layers: [],
+		colors: []
 	};
 	Object.keys(buffer).forEach(function(key) {
-		if (buffer[key].name){
+		if (buffer[key].name) {
 			buffer2.layers.push(buffer[key]);
 		}
 		//	console.log(util.inspect(buffer[key],false,null));
 		//	console.log('-----');
 	})
+
+	Object.keys(colors).forEach(function(key) {
+		if (key != 'undefined') {
+			buffer2.colors.push(colors[key]);
+		}
+	});
 
 	var str = util.inspect(buffer2, false, null);
 
