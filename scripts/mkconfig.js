@@ -44,11 +44,27 @@ glob("./images/avatarmale/*", null, function(er, files) {
 
 	});
 
+// now the config layers are in an object. Convert this to an array
+
+var buffer2 = {layers: []};
+Object.keys(buffer).forEach(function(key){
+	buffer2.layers.push(buffer[key]);
+//	console.log(util.inspect(buffer[key],false,null));
+//	console.log('-----');
+})
+
+var str = util.inspect(buffer2,false,null);
+
+str = str.replace(/__\'/g,'');
+str = str.replace(/\'__/g,'');
+console.log(str);
+
+
 
 //var config=
 
 
 
-console.log(util.inspect(buffer,false,null));
+
 
 })
