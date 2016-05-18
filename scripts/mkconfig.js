@@ -29,6 +29,7 @@ glob("./images/avatarmale/*", null, function(er, files) {
 		if (!buffer[parts[index_layer]]) {
 			buffer[parts[index_layer]] = {
 				name: parts[index_layer],
+				icon: '__this.resolveUrl("' + path.dirname(file) + '/' + parts[index_layer] + '-icon.png")__',
 				options: []
 			};
 		}
@@ -55,7 +56,9 @@ glob("./images/avatarmale/*", null, function(er, files) {
 		layers: []
 	};
 	Object.keys(buffer).forEach(function(key) {
-		buffer2.layers.push(buffer[key]);
+		if (buffer[key].name){
+			buffer2.layers.push(buffer[key]);
+		}
 		//	console.log(util.inspect(buffer[key],false,null));
 		//	console.log('-----');
 	})

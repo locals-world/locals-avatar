@@ -76,8 +76,10 @@ Example:
         };
 
         this.config = 
+
 { layers: 
    [ { name: 'body',
+       icon: this.resolveUrl("./images/avatarmale/body-icon.png"),
        options: 
         [ { tile: this.resolveUrl("./images/avatarmale/0-avatar-body-male-blue.png"),
             group: 'blue' },
@@ -96,6 +98,7 @@ Example:
           { tile: this.resolveUrl("./images/avatarmale/0-avatar-body-male-yellow.png"),
             group: 'yellow' } ] },
      { name: 'shoes',
+       icon: this.resolveUrl("./images/avatarmale/shoes-icon.png"),
        options: 
         [ { tile: this.resolveUrl("./images/avatarmale/1-avatar-shoes-arado-blue.png"),
             group: 'blue' },
@@ -158,6 +161,7 @@ Example:
           { tile: this.resolveUrl("./images/avatarmale/1-avatar-shoes-plain-yellow.png"),
             group: 'yellow' } ] },
      { name: 'bottom',
+       icon: this.resolveUrl("./images/avatarmale/bottom-icon.png"),
        options: 
         [ { tile: this.resolveUrl("./images/avatarmale/2-avatar-bottom-mara-blue.png"),
             group: 'blue' },
@@ -208,6 +212,7 @@ Example:
           { tile: this.resolveUrl("./images/avatarmale/2-avatar-bottom-skilo-yellow.png"),
             group: 'yellow' } ] },
      { name: 'top',
+       icon: this.resolveUrl("./images/avatarmale/top-icon.png"),
        options: 
         [ { tile: this.resolveUrl("./images/avatarmale/3-avatar-top-loma-blue.png"),
             group: 'blue' },
@@ -288,6 +293,7 @@ Example:
           { tile: this.resolveUrl("./images/avatarmale/3-avatar-top-sheek-yellow.png"),
             group: 'yellow' } ] },
      { name: 'head',
+       icon: this.resolveUrl("./images/avatarmale/head-icon.png"),
        options: 
         [ { tile: this.resolveUrl("./images/avatarmale/4-avatar-head-male-blue.png"),
             group: 'blue' },
@@ -306,10 +312,12 @@ Example:
           { tile: this.resolveUrl("./images/avatarmale/4-avatar-head-male-yellow.png"),
             group: 'yellow' } ] },
      { name: 'facemale',
+       icon: this.resolveUrl("./images/avatarmale/facemale-icon.png"),
        options: 
-        [ { tile: this.resolveUrl("./images/avatarmale/5-avatar-facemale-plain-darkgrey.png"),
-            group: 'darkgrey' } ] },
+        [ { tile: this.resolveUrl("./images/avatarmale/5-avatar-facemale-nooptions-nocolors.png"),
+            group: 'nocolors' } ] },
      { name: 'glasses',
+       icon: this.resolveUrl("./images/avatarmale/glasses-icon.png"),
        options: 
         [ { tile: this.resolveUrl("./images/avatarmale/6-avatar-glasses-happo-blue.png"),
             group: 'blue' },
@@ -328,6 +336,7 @@ Example:
           { tile: this.resolveUrl("./images/avatarmale/6-avatar-glasses-happo-yellow.png"),
             group: 'yellow' } ] },
      { name: 'beard',
+       icon: this.resolveUrl("./images/avatarmale/beard-icon.png"),
        options: 
         [ { tile: this.resolveUrl("./images/avatarmale/7-avatar-beard-beadr-blue.png"),
             group: 'blue' },
@@ -394,6 +403,7 @@ Example:
           { tile: this.resolveUrl("./images/avatarmale/7-avatar-beard-lebu-yellow.png"),
             group: 'yellow' } ] },
      { name: 'snit',
+       icon: this.resolveUrl("./images/avatarmale/snit-icon.png"),
        options: 
         [ { tile: this.resolveUrl("./images/avatarmale/8-avatar-snit-albifrons-blue.png"),
             group: 'blue' },
@@ -507,6 +517,7 @@ Example:
             group: 'white' },
           { tile: this.resolveUrl("./images/avatarmale/8-avatar-snit-vanzolini-yellow.png"),
             group: 'yellow' } ] } ] }
+
 
 ;
         if (!this.state) {
