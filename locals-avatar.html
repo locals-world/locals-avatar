@@ -464,12 +464,12 @@ Example:
 
       visualstatechanged: function() {
         //console.log('Visual state changed');
-        this.fire('visual-state-changed');
+        this.fire('visual-state-changed',this.visualstate);
       },
 
       datastatechanged: function() {
         //console.log('Data state changed');
-        this.fire('data-state-changed');
+        this.fire('data-state-changed',this.datastate);
       },
 
 
