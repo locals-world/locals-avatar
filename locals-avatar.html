@@ -8,6 +8,7 @@ LOCALS
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../locals-object/locals-object.html">
+<link rel="import" href="../locals-object/locals-dataobject.html">
 
 <!--
 An element providing a solution to no problem in particular.
@@ -28,8 +29,8 @@ Example:
 
 <dom-module id="locals-avatar">
   <template>
-   <locals-object config="{{config}}" dataconfig="{{dataconfig}}" data="{{data}}" state="{{state}}" on-state-changed="statechanged" on-data-changed="datachanged"></locals-object>
-
+   <locals-object config="[[config]]" dataconfig="{{dataconfig}}" state="{{visualstate}}" on-state-changed="visualstatechanged"></locals-object>
+  <locals-dataobject on-state-changed="datastatechanged" state="{{datastate}}" config="[[dataconfig]]"></locals-dataobject>
   </template>
 
   <script>
@@ -44,11 +45,13 @@ Example:
           type: String,
           value: '0.0.1'
         },
-        state: {
-          type: Object
+        visualstate: {
+          type: Object,
+          notify: true
         },
-        data: {
-          type: Object
+        datastate: {
+          type: Object,
+          notify: true
         }
       },
 
@@ -61,16 +64,20 @@ Example:
           fields: [
             {
               name: "firstname",
-              type: "input"
+              type: "input",
+              label: "Firstname"
             }, {
               name: "lastname",
-              type: "input"
+              type: "input",
+              label: "Lastname"
             }, {
               name: "birthplace",
-              type: "input"
+              type: "input",
+              label: "Birthplace"
             }, {
               name: "birthdate",
-              type: "input"
+              type: "input",
+              label: "Birthdate"
             },
           ]
         };
@@ -412,13 +419,13 @@ Example:
 
 
 ;
-        if (!this.state) {
+        if (!this.visualstate) {
           // default state
-          this.state = this.config.defaultstate;
+          this.visualstate = this.config.defaultstate;
         }
 
-        if (!this.data) {
-          this.data = {
+        if (!this.datastate) {
+          this.datastate = {
               "firstname": "",
               "lastname": "",
               "birthdate": "",
@@ -445,9 +452,15 @@ Example:
         // Use this to clean up anything you did in `attached`.
       },
 
-      statechanged: function() {
-        console.log('State changed');
-      }
+      visualstatechanged: function() {
+        console.log('Visual state changed');
+        this.fire('visual-state-changed');
+      },
+
+      datastatechanged: function() {
+        console.log('Data state changed');
+        this.fire('data-state-changed');
+      },
 
 
     });
