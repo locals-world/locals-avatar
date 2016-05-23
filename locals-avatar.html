@@ -87,6 +87,7 @@ Example:
 { layers: 
    [ { name: 'body',
        icon: this.resolveUrl("./images/avatarmale/body-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/body-icon-selected.png"),
        variants: [ 'male' ],
        colors: 
         [ 'blue',
@@ -108,6 +109,7 @@ Example:
           'male-yellow': this.resolveUrl("./images/avatarmale/0-avatar-body-male-yellow.png") } },
      { name: 'shoes',
        icon: this.resolveUrl("./images/avatarmale/shoes-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/shoes-icon-selected.png"),
        variants: [ 'arado', 'flipflop', 'kurgan', 'plain' ],
        colors: 
         [ 'blue',
@@ -151,6 +153,7 @@ Example:
           'plain-yellow': this.resolveUrl("./images/avatarmale/1-avatar-shoes-plain-yellow.png") } },
      { name: 'bottom',
        icon: this.resolveUrl("./images/avatarmale/bottom-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/bottom-icon-selected.png"),
        variants: [ 'mara', 'shazam', 'skilo' ],
        colors: 
         [ 'blue',
@@ -188,6 +191,7 @@ Example:
           'skilo-yellow': this.resolveUrl("./images/avatarmale/2-avatar-bottom-skilo-yellow.png") } },
      { name: 'top',
        icon: this.resolveUrl("./images/avatarmale/top-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/top-icon-selected.png"),
        variants: [ 'loma', 'miikelsen', 'mrsmith', 'rico', 'sheek' ],
        colors: 
         [ 'blue',
@@ -240,6 +244,7 @@ Example:
           'sheek-yellow': this.resolveUrl("./images/avatarmale/3-avatar-top-sheek-yellow.png") } },
      { name: 'head',
        icon: this.resolveUrl("./images/avatarmale/head-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/head-icon-selected.png"),
        variants: [ 'male' ],
        colors: 
         [ 'blue',
@@ -261,11 +266,13 @@ Example:
           'male-yellow': this.resolveUrl("./images/avatarmale/4-avatar-head-male-yellow.png") } },
      { name: 'facemale',
        icon: this.resolveUrl("./images/avatarmale/facemale-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/facemale-icon-selected.png"),
        variants: [ 'nooptions' ],
        colors: [ 'nocolors' ],
        images: { 'nooptions-nocolors': this.resolveUrl("./images/avatarmale/5-avatar-facemale-nooptions-nocolors.png") } },
      { name: 'glasses',
        icon: this.resolveUrl("./images/avatarmale/glasses-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/glasses-icon-selected.png"),
        variants: [ 'happo' ],
        colors: 
         [ 'blue',
@@ -287,6 +294,7 @@ Example:
           'happo-yellow': this.resolveUrl("./images/avatarmale/6-avatar-glasses-happo-yellow.png") } },
      { name: 'beard',
        icon: this.resolveUrl("./images/avatarmale/beard-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/beard-icon-selected.png"),
        variants: [ 'beadr', 'bobiar', 'kahlem', 'lebu' ],
        colors: 
         [ 'blue',
@@ -332,6 +340,7 @@ Example:
           'lebu-yellow': this.resolveUrl("./images/avatarmale/7-avatar-beard-lebu-yellow.png") } },
      { name: 'snit',
        icon: this.resolveUrl("./images/avatarmale/snit-icon.png"),
+       iconselected: this.resolveUrl("./images/avatarmale/snit-icon-selected.png"),
        variants: 
         [ 'albifrons',
           'apella',
@@ -418,6 +427,7 @@ Example:
      [ 0, 0 ] ] }
 
 
+
 ;
         if (!this.visualstate) {
           // default state
@@ -453,12 +463,12 @@ Example:
       },
 
       visualstatechanged: function() {
-        console.log('Visual state changed');
+        //console.log('Visual state changed');
         this.fire('visual-state-changed');
       },
 
       datastatechanged: function() {
-        console.log('Data state changed');
+        //console.log('Data state changed');
         this.fire('data-state-changed');
       },
 

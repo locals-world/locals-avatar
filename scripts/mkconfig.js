@@ -44,6 +44,7 @@ glob("./images/avatarmale/*", null, function(er, files) {
 			layers[parts[index_type]] = {
 				name: parts[index_type],
 				icon: '__this.resolveUrl("' + path.dirname(file) + '/' + parts[index_layer] + '-icon.png")__',
+				iconselected: '__this.resolveUrl("' + path.dirname(file) + '/' + parts[index_layer] + '-icon-selected.png")__',
 				variants: [],
 				colors: [],
 				images: {}
