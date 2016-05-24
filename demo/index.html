@@ -23,7 +23,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h1>Here is avatar</h1>
 
   <template is="dom-bind" id="app">
-    <locals-avatar visualstate="{{visualstate}}" datastate="{{datastate}}" on-visualstate-changed="visualstatechanged" on-datastate-changed="datastatechanged"></locals-avatar>
+    <locals-avatar visualstate="{{visualstate}}" datastate="{{datastate}}" on-visual-state-changed="visualstatechanged" on-data-state-changed="datastatechanged"></locals-avatar>
+
+    <locals-button on-tap="ramdonize">Spin the wheel of RamdonNess</locals-button>
+
 
     <h1>Here's his visual config</h1>
     <pre>{{prettyprint(visualstate)}}</pre>
@@ -63,68 +66,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           lastname: ""
         };
 
-        setInterval(function(){
-          app.datastate.lastname += "a";
-          console.log('woops');
-//          console.log(app)
-        },1000);
-
-        app.config = {
-          layers: [{
-
-              "name": "skeleton",
-              "options": [{
-                "name": "whiteskeleton",
-                "tile": "skeletonimgs/white.png",
-                "group": "red"
-              }, {
-                "name": "redskeleton",
-                "tile": "skeletonimgs/red.png",
-                "group": "green"
-              }, {
-                "name": "greenskeleton",
-                "tile": "skeletonimgs/green.png",
-                "group": "green"
-              }]
-              ,
-             
-            }
-
-            , {
-
-              "name": "headband",
-              "options": [{
-                "name": "empty",
-                "tile": "skeletonimgs/empty.png"
-              }, {
-                "name": "band1",
-                "tile": "skeletonimgs/band1.png"
-              }, {
-                "name": "band2",
-                "tile": "skeletonimgs/band2.png"
-              }]
-
-            }
+        app.visualstate = 
+          [[0,0],[0,0],[0,0],[0,5],[0,3],[0,0],[0,0],[0,0],[0,0]]
+        ;
 
 
-            , {
+        app.ramdonize = function(){
+                app.visualstate = 
+                    [[0,Math.floor(Math.random()*4)],[0,Math.floor(Math.random()*4)],[0,Math.floor(Math.random()*4)],[0,Math.floor(Math.random()*4)],[0,Math.floor(Math.random()*4)],[0,Math.floor(Math.random()*4)],[0,Math.floor(Math.random()*4)],[0,Math.floor(Math.random()*4)],[0,Math.floor(Math.random()*4)]]
+                  ;
 
+//app.visualstate[0][1] = Math.floor(Math.random()*4);
 
-              "name": "suit",
-              "options": [{
-                "name": "empty",
-                "tile": "skeletonimgs/empty.png"
-              }, {
-                "name": "bluesuit",
-                "tile": "skeletonimgs/bluesuit.png"
-              }, {
-                "name": "greensuit",
-                "tile": "skeletonimgs/greensuit.png"
-              }]
-            }
-          ]
         };
-        app.state = [0, 1, 0];
+
+//         setInterval(function(){
+//           app.datastate.lastname += "a";
+//           app.visualstate[0][1] = Math.floor(Math.random()*4);
+//           app.visualstate[1][1] = Math.floor(Math.random()*4);
+//           app.visualstate[2][1] = Math.floor(Math.random()*4);
+//           app.visualstate[3][1] = Math.floor(Math.random()*4);
+//           console.log(app.visualstate);
+// //          console.log(app)
+//         },1000);
+
       })(document);
 
     </script>
