@@ -46,7 +46,7 @@ Example:
           value: '0.0.1'
         },
         visualstate: {
-          type: Object,
+          type: Array,
           notify: true
         },
         datastate: {
@@ -56,9 +56,7 @@ Example:
       },
 
       // Element Lifecycle
-
       ready: function() {
-
 
         this.dataconfig = {
           fields: [
