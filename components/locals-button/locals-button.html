@@ -1,0 +1,400 @@
+<!--
+@license
+Copyright (c) 2016 A-labs. All rights reserved.
+/////////////////
+LOCALS
+/////////////////
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../locals-style/locals-style.html">
+<link rel="import" href="../locals-icon/locals-icon.html">
+
+<!--
+Buttons in the Locals-style. Example:
+
+    <locals-button> Button </locals-button>
+
+Add color or size as attribute to modify:
+
+    <locals-button small green> Small green button </locals-button>
+
+    <locals-button medium yellow> Medium yellow button </locals-button>
+    
+    <locals-button large blue> Large blue button </locals-button>
+
+
+Add outline="color" to make the outline-button (and add small or medium for size):
+
+    <locals-button small outline="green"> Small green outline button </locals-button>
+
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="locals-button">
+  <template>
+    <style>
+      :host {
+        @apply(--opensans-reg);
+        font-size: 16px;    
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        padding: 18px 24px 18px 24px;
+        text-align: center;
+        outline-width: 0;
+        border-radius: 0px;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        z-index: 0;
+        /* color is in general black, unless overwritten by specific class */
+        color:black;
+/*        box-shadow: 2px 2px 0px rgba(0,0,0,0.2);*/
+        --outline-color: black;
+        --txt-color: black;
+        --bg-color: var(--locals-grey2);
+        border-top: 1px solid rgba(0,0,0,0.1);
+        border-right: 2px solid rgba(0,0,0,0.2);
+        border-bottom: 2px solid rgba(0,0,0,0.2);
+        border-left: 1px solid rgba(0,0,0,0.1);
+      }
+
+/*      :host:hover {
+        background-color: rgba(0,0,0,0.025);    
+      }   */   
+      :host:active {
+        background-color: rgba(0,0,0,0.05);    
+      }
+
+
+
+
+      /* Sizes */
+      :host([small]) {
+        font-size: 12px;    
+        padding: 10px 15px 10px 15px;
+      };
+
+      :host([medium]) {
+        padding: 16px 24px 16px 24px;
+        font-size: 22px;    
+      };
+
+      :host([large]) {
+        padding: 25px 40px 25px 40px;
+        font-size: 38px;    
+        @apply(--opensans-light);
+
+      }
+
+
+      /* Colors + active-states */
+      :host([green]) {
+        color: white;
+        background-color: var(--locals-green);    
+      }
+      :host([green]):active {
+        background-color: var(--locals-green-darker);    
+      }
+
+      :host([red]) {
+        color: white;
+        background-color: var(--locals-red);    
+      }
+      :host([red]):active {
+        background-color: var(--locals-red-darker);    
+      }
+
+      :host([yellow]) {
+        color: white;
+        background-color: var(--locals-yellow);    
+      }
+      :host([yellow]):active {
+        background-color: var(--locals-yellow-darker);    
+      }
+
+      :host([purple]) {
+        color: white;
+        background-color: var(--locals-purple);    
+      }
+      :host([purple]):active {
+        background-color: var(--locals-purple-darker);    
+      }
+
+      :host([darkblue]) {
+        color: white;
+        background-color: var(--locals-darkblue);    
+      }
+      :host([darkblue]):active {
+        background-color: var(--locals-darkblue-darker);    
+      }
+
+      :host([blue]) {
+        color: white;
+        background-color: var(--locals-blue);    
+      }
+      :host([blue]):active {
+        background-color: var(--locals-blue-darker);    
+      }
+
+      :host([lightblue]) {
+        color: white;
+        background-color: var(--locals-lightblue);    
+      }
+      :host([lightblue]):active {
+        background-color: var(--locals-lightblue-darker);    
+      }
+
+
+      /* Outline + active-states */
+      :host([outline][small]) {
+        color: var(--outline-color);
+        background: transparent;
+        border: 1px solid var(--outline-color);
+        @apply(--opensans-reg);
+        box-shadow: none;
+      }
+      :host([outline][small]):active {
+        color: white;
+        background: var(--outline-color);
+        border: 1px solid var(--outline-color);
+        @apply(--opensans-reg);
+      }
+
+      :host([outline]) {
+        color: var(--outline-color);
+        background: transparent;
+        border: 2px solid var(--outline-color);
+        @apply(--opensans-semibold);
+        box-shadow: none;
+      }
+      :host([outline]):active {
+        color: white;
+        background: var(--outline-color);
+        border: 2px solid var(--outline-color);
+        @apply(--opensans-semibold);
+      }
+
+      :host([outline][large]) {
+        @apply(--opensans-light);
+      }
+      :host([outline][large]):active {
+        @apply(--opensans-light);
+      }
+
+
+      :host([disabled]) {
+        opacity: 0.5;
+        cursor: auto;
+        pointer-events: none;
+      }
+
+      :host([txtcolor][small]) {
+        color: var(--txt-color);
+        @apply(--opensans-bold);
+      }
+
+      :host([txtcolor]) {
+        color: var(--txt-color);
+        @apply(--opensans-semibold);
+      }
+
+      :host([txtcolor][large]) {
+        color: var(--txt-color);
+        @apply(--opensans-light);
+      }
+
+
+
+      :host([icon]) {
+
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        box-sizing: border-box;
+        padding: 14px;
+        background-color: var(--bg-color);
+        border: none;
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+      };
+
+      :host([icon][small]) {
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box;
+        padding: 10px;
+      };
+
+      :host([icon][big]) {
+        width: 84px;
+        height: 84px;
+        box-sizing: border-box;
+        padding: 17px;
+      };
+
+      :host([icon][outline]) {
+        color: var(--outline-color);
+        background: transparent;
+        border: 2px solid var(--outline-color);
+        box-shadow: none;
+      };
+
+
+      :host([back]) {
+        background-color: transparent;
+        box-sizing: border-box;
+        padding: 18px 24px 18px 24px;
+        background-color: var(--bg-color);
+        border: none;
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+        background-color: red;
+      };
+
+    </style>
+
+    <template is="dom-if" if="{{normal}}">
+    <content></content>
+    </template>
+
+    <template is="dom-if" if="{{iconbtn}}">
+    <locals-icon icon="{{icon}}" iconcolor="{{txtcolor}}"
+      big$=[[big]] small$=[[small]]></locals-icon>
+    </template>
+
+<!--     <template is="dom-if" if="{{back}}">
+    <button>
+    <locals-icon icon="back" iconcolor="{{txtcolor}}"></locals-icon>
+    <content></content>
+    </button>
+    </template> -->
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'locals-button',
+
+      properties: {
+
+        /**
+
+         */
+        normal: {
+          type:Boolean,
+          value: true,
+          observer: '_normal'
+
+        },  
+
+        outline: {
+          type:String,
+          value: 'blue',
+          observer: '_outline'
+        },
+
+        txtcolor: {
+          type:String,
+          value: 'darkgrey',
+          observer: '_txtcolor'
+        },
+
+        iconbtn: {
+          type:Boolean,
+          value: false
+
+        },  
+
+        icon: {
+          type:String,
+          observer: '_icon'
+        },
+
+        bg: {
+          type:String,
+          observer: '_bg'
+        },
+
+        back: {
+          type:Boolean,
+          value: false
+        },  
+
+      },
+
+      // Element Lifecycle
+
+      ready: function() {
+        // `ready` is called after all elements have been configured, but
+        // propagates bottom-up. This element's children are ready, but parents
+        // are not.
+        //
+        // This is the point where you should make modifications to the DOM (when
+        // necessary), or kick off any processes the element wants to perform.
+      },
+
+      attached: function() {
+        // `attached` fires once the element and its parents have been inserted
+        // into a document.
+        //
+        // This is a good place to perform any work related to your element's
+        // visual state or active behavior (measuring sizes, beginning animations,
+        // loading resources, etc).
+      },
+
+      detached: function() {
+        // The analog to `attached`, `detached` fires when the element has been
+        // removed from a document.
+        //
+        // Use this to clean up anything you did in `attached`.
+      },
+
+      _outline: function(outline) {
+        // console.log(this.outline);
+        this.outlinecolor = 'var(--locals-'+this.outline+')';
+        this.customStyle['--outline-color'] = this.outlinecolor;
+        this.updateStyles();
+      },
+
+
+
+      _txtcolor: function(txtcolor) {
+        // console.log(this.txtcolor);
+        this.txtcolorcomplete = 'var(--locals-'+this.txtcolor+')';
+        this.customStyle['--txt-color'] = this.txtcolorcomplete;
+        this.updateStyles();
+      },
+
+
+      _icon: function(){
+        this.iconbtn = true;
+        this.normal = false;
+        this.back = false;
+      },
+
+
+      _normal: function(){
+        if (this.normal){
+        this.iconbtn = false;
+        this.back = false;
+        }
+      },
+
+      _bg:function(){
+        this.bgcolor = 'var(--locals-'+this.bg+')';
+        this.customStyle['--bg-color'] = this.bgcolor;
+        this.updateStyles();    
+      }
+
+
+
+
+    });
+  </script>
+</dom-module>

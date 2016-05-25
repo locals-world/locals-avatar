@@ -1,0 +1,36 @@
+{
+  "name": "locals-confirm",
+  "authors": [
+    "Anonymous <anonymous@example.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "locals-confirm.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "locals-style": "https://github.com/locals-world/locals-style.git",
+    "locals-button": "https://github.com/locals-world/locals-button.git#^0.0.4"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  },
+  "_release": "2e8d88d0dd",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2e8d88d0dd86232f088da75ae617b0c36749d9db"
+  },
+  "_source": "https://github.com/locals-world/locals-confirm.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/locals-world/locals-confirm.git"
+}

@@ -1,0 +1,117 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>locals-button Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../locals-button.html">
+    <link rel="import" href="../../locals-style/locals-style.html">
+
+    <style type="text/css">
+
+/*     .presenting {
+      width: 70vw;
+      min-width: 300px;
+      padding: 50px;
+     }
+     .whitespace {
+      height: 20px;
+     }
+
+     .wrapper {
+      width: 100%;
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+     }
+*/
+
+    </style>
+  </head>
+  <body unresolved>
+
+  <div class="localscanvas">
+  <div class="localstypo">
+    <h1>Locals Buttons</h1>
+    <div class="whitespace"></div>
+
+    <h4>They come in all sizes!</h4>
+    <p>(default, small, large)</p>
+    <div class="whitespace"></div>
+    <locals-button>Standard button</locals-button>
+    <div class="whitespace"></div>
+    <locals-button small>Small button</locals-button>
+    <div class="whitespace"></div>
+    <locals-button large>Big stacker</locals-button>
+    
+    <div class="whitespace"></div>
+    <div class="whitespace"></div>
+
+    <h4>They come in all colors!</h4>
+    <p>(blue, red, yellow, green, lightblue, blue, darkblue)</p>
+    <div class="localswrapper">
+      <div class="whitespace"></div>
+      <locals-button small blue>blue button</locals-button>
+      <locals-button small green>green button</locals-button>
+      <locals-button small red>red button</locals-button>
+      <locals-button small yellow>yellow button</locals-button>
+    </div>
+    
+    <div class="whitespace"></div>
+    <div class="whitespace"></div>
+    
+    <h4>Or with just some text colorings!</h4>
+    <p>(add a color as value of the txtcolor-attribute)</p>
+    <div class="whitespace"></div>
+    <locals-button small txtcolor="red">red txt button</locals-button>
+    <div class="whitespace"></div>
+    <locals-button txtcolor="blue">blue txt button</locals-button>
+    <div class="whitespace"></div>
+    <locals-button large txtcolor="green">green txt button</locals-button>
+
+    <div class="whitespace"></div>
+    <div class="whitespace"></div>
+
+    <h4>They come in outlines!</h4>
+    <p>(add a color as value of the outline-attribute)</p>
+    <div class="whitespace"></div>
+    <locals-button outline="darkgrey">Standard outline btn</locals-button>
+    <div class="whitespace"></div>
+    <locals-button outline="green">green outline button</locals-button>
+    <div class="whitespace"></div>
+    <locals-button small outline="blue">blue outline button</locals-button>
+    <div class="whitespace"></div>
+    <locals-button large outline="red">Stop what you're doing!</locals-button>
+
+    <div class="whitespace"></div>
+    <div class="whitespace"></div>
+
+    <h4>Icon buttons!</h4>
+    <p>(Add the icon as value of the icon-attribute. Add a color as value of the txtcolor-attribute/bg-attribute.)</p>
+    <div class="whitespace"></div>
+    <locals-button icon="v" txtcolor="lightblue" big></locals-button>
+    <locals-button icon="v" txtcolor="blue"></locals-button>
+     <locals-button icon="decline" txtcolor="grey1" bg="green" small></locals-button>
+
+    <div class="whitespace"></div>
+    <div class="whitespace"></div>
+
+<!--     <h4>Back buttons</h4>
+    <p>(Add the icon as value of the icon-attribute. Add a color as value of the txtcolor-attribute/bg-attribute.)</p>
+    <div class="whitespace"></div>
+    <locals-button back txtcolor="lightblue">???</locals-button> -->
+  </div>
+  </div>
+
+
+  </body>
+</html>

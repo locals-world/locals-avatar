@@ -1,0 +1,293 @@
+<!--
+@license
+Copyright (c) 2016 A-labs. All rights reserved.
+/////////////////
+LOCALS
+/////////////////
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../locals-style/locals-style.html">
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="stylesheet" href="locals-input-datepicker.css">
+
+<!--
+This element uses the same structure as a paper-input but applies Locals-style to it. Use label, placeholder as attribute. Use the attr bind-value for two-way binding your value.
+
+Example:
+
+    <locals-input label="My input" placeholder="Just another txtinput">
+    </locals-input>
+
+
+
+Use date for a datepicker-input. 
+
+Example:
+
+    <locals-input date label="My date" placeholder="4th July 2016">
+    </locals-input>
+
+Use "type=time" for a time-input. The unixts give a unix time stamp.
+
+Example:
+
+    <locals-input type="time" label="My time">
+    </locals-input>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="locals-input">
+<script src="../moment/min/moment-with-locales.min.js"></script>
+<script src="../pikaday/pikaday.js"></script>
+
+  <template>
+    <style>
+     :host {
+        display: block;
+        margin: 5px 0px 0px 0px;
+        --input-color: darkgrey;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .total {
+        position: relative;
+        box-sizing: border-box;
+        @apply(--layout-vertical);
+        @apply(--opensans-reg);
+        z-index: 0;
+      }
+
+      .label {
+        font-size: 12px;
+        z-index: -1;
+        box-sizing: border-box;
+        padding: 5px 5px 0px 0px;
+        color:var(--locals-darkgrey);
+      }
+
+      input {
+        @apply(--opensans-reg);
+        color:var(--locals-darkgrey);
+        outline-width: 0;
+        outline: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        border: none;
+        z-index: 0;
+        box-sizing: border-box;
+        padding: 8px;
+        font-size: 16px;
+      }
+
+      .withcontent input {
+        border-bottom: 2px solid rgba(0,0,0,0.075);
+        background-color: rgba(0,0,0,0);
+        padding: 0px 0px 4px 0px;
+      }
+
+
+      .nocontent input {
+        background-color: rgba(0,0,0,0.04);
+      }
+      .withcontent label {
+        color: lightgrey;
+      }
+
+
+      .outfocus input {
+        box-sizing: border-box;
+        @apply(--opensans-reg);
+        transition: background-color 0.25s, padding 0.25s;
+
+      }
+      .outfocus label {
+        -webkit-transition: -webkit-transform 0.25s;
+        transition: transform 0.25s;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        -webkit-transform: translateY(0%) translateX(0px) scale(1);
+        transform: translateY(0%) translateX(0px) scale(1);
+      }
+
+
+      
+      .infocus input {
+        border-bottom: 2px solid var(--input-color);
+        transition: background-color 0.25s, padding 0.25s;
+        background-color: rgba(0,0,0,0);
+        @apply(--opensans-semibold);
+        margin-top: 4px;
+        box-sizing: border-box;
+        padding: 8px;
+     }
+
+      .infocus label {
+        color: var(--input-color);
+        @apply(--opensans-semibold);
+        -webkit-transition: -webkit-transform 0.25s;
+        transition: transform 0.25s;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        -webkit-transform: translateY(0%) translateX(8px) scale(1.15);
+        transform: translateY(0%) translateX(8px) scale(1.15);
+        padding: 5px 5px 0px 0px;
+      }
+
+    </style>
+
+    <div class$="{{focusclass}} {{contentclass}} total">
+      <label class="label">[[label]]</label>
+      <content select="[prefix]"></content>
+      <input id="inputter"
+        is="iron-input"
+        bind-value="{{inputvalue}}"
+        placeholder$="[[placeholder]]"
+        type="{{type}}"
+        name$="[[name]]"
+        >
+    </div>
+
+
+  </template>
+  <script>
+    Polymer({
+      is: 'locals-input',
+
+      behaviors: [
+      ],
+
+      properties: {
+
+        color: {
+          type:String,
+          value: 'darkgrey',
+          observer: '_color'
+        },
+
+        inputvalue: {
+          type: String,
+          value: ''
+        },
+
+
+        date: {
+          type: Boolean,
+          value: false,
+          observer: '_date'
+        },
+
+        txt: {
+          type: Boolean,
+          value: false
+        },
+
+        type: {
+          type: String,
+          value: 'text',
+          observer: '_type'
+        },
+
+
+        unixts: {
+          type: Number,
+          notify:true
+        },
+
+      },
+
+      _inputvalue: function (){
+        if(this.inputvalue){
+          this.contentclass = 'withcontent';
+        } else {
+          this.contentclass = 'nocontent';
+        }
+
+      },
+
+
+      ready: function() {
+        this.addEventListener('focus', this._boundtoFocus, true);
+        this.addEventListener('blur', this._boundtoBlur, true);
+        this._inputvalue();
+      },
+
+      attached: function() {
+
+
+              // if(!this.txt && this.date){
+              //   console.log('ik heb een date');
+              // }
+
+          // this._pickaday();
+
+        // if(this.date){
+        //   this._pickaday();
+        // } else {
+        //   console.log("No pickaday");
+        // }
+
+
+
+      },
+
+
+
+
+      detached: function() {
+      },
+
+      _boundtoFocus: function(){
+          this.focusclass = 'infocus';
+      },
+
+      _boundtoBlur: function(){
+          this.focusclass = 'outfocus';
+          this._inputvalue();
+      },
+
+      _color: function(){
+        this.inputcolor = 'var(--locals-'+this.color+')';
+        this.customStyle['--input-color'] = this.inputcolor;
+        this.updateStyles();
+      },
+
+      _type:function(){
+        // console.log(this.type);
+      },
+
+
+      _date: function(){
+
+      
+      if(!this.txt && this.date){
+          var self = this;
+          var picker = new Pikaday(
+          {
+              field: this.$.inputter,
+              firstDay: 1,
+              minDate: new Date(2000, 0, 1),
+              maxDate: new Date(2020, 12, 31),
+              yearRange: [2000,2020],
+              onSelect: function() {
+                  self.inputvalue = this.getMoment().format('Do MMMM YYYY') + ' ';
+                  // var date = document.createTextNode(this.getMoment().format('Do MMMM YYYY') + ' ');
+                  // self.$.selected.appendChild(date);
+                  self.unixts = this.getMoment().format('X');
+              }
+          });          
+          // picker.setMoment(moment().dayOfYear(366));
+        }
+      }
+
+
+
+    });
+  </script>
+</dom-module>
