@@ -29,7 +29,7 @@ Example:
 
 <dom-module id="locals-avatar">
   <template>
-   <locals-object config="[[config]]" dataconfig="{{dataconfig}}" state="{{visualstate}}" on-state-changed="visualstatechanged"></locals-object>
+   <locals-object on-internalstatechange="fixdata" config="[[config]]" dataconfig="{{dataconfig}}" state="{{visualstate}}" on-state-changed="visualstatechanged"></locals-object>
   <locals-dataobject on-state-changed="datastatechanged" state="{{datastate}}" config="[[dataconfig]]"></locals-dataobject>
   </template>
 
@@ -53,6 +53,20 @@ Example:
           type: Object,
           notify: true
         }
+      },
+
+      fixdata: function(e){
+        console.log('fix data',e.detail);
+
+        console.log('color of body',e.detail[this.layerindex['body']][1]);
+        console.log('color of head',e.detail[this.layerindex['head']][1]);
+
+        // copy head color to body color
+        if (e.detail[this.layerindex['head']][1] != e.detail[this.layerindex['body']][1]){
+          e.detail[this.layerindex['head']][1] = e.detail[this.layerindex['body']][1];
+          this.visualstate = e.detail;
+        }
+
       },
 
       // Element Lifecycle
@@ -427,6 +441,20 @@ Example:
 
 
 ;
+
+  this.layerindex = {};
+
+    var self= this;
+      // make some layers invisible
+      this.config.layers = this.config.layers.map(function(layer,index){
+        self.layerindex[layer.name] = index;
+        if (layer.name == 'head' || layer.name == 'facemale'){
+          layer.hidden = true;
+        }
+        return layer;
+      });
+
+
         if (!this.visualstate) {
           // default state
           this.visualstate = this.config.defaultstate;
