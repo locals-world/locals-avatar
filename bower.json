@@ -27,5 +27,7 @@
   },
   "resolutions": {
     "locals-button": "^0.0.5"
+  }, "scripts": {
+    "postinstall": "npm install && gulp compile"
   }
 }
