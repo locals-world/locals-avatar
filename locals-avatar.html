@@ -28,8 +28,11 @@ Example:
 
 <dom-module id="locals-avatar">
   <template>
+  Hallo mijne state is {{state}}
    <locals-object on-internalstatechange="_fixdata" config="[[config]]" state="{{visualstate}}" on-state-changed="_visualstatechanged"></locals-object>
+   <template is="dom-if" if="{{_is(state,'open')}}">
     <locals-dataobject on-state-changed="_datastatechanged" state="{{datastate}}" config="[[dataconfig]]"></locals-dataobject>
+   </template>
   </template>
 
   <script>
@@ -54,8 +57,21 @@ Example:
         datastate: {
           type: Object,
           notify: true
+        },
+
+        state: {
+          type: String          
         }
       },
+
+
+      _is: function(a, b) {
+        if (b === undefined){
+          b = true;
+        }
+        return a === b;
+      },
+
 
       _fixdata: function(e){
         console.log('fix data',e.detail);
