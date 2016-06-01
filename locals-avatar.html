@@ -28,9 +28,8 @@ Example:
 
 <dom-module id="locals-avatar">
   <template>
-  Hallo mijne state is {{state}}
-   <locals-object on-internalstatechange="_fixdata" config="[[config]]" state="{{visualstate}}" on-state-changed="_visualstatechanged"></locals-object>
-   <template is="dom-if" if="{{_is(state,'open')}}">
+   <locals-object on-internalstatechange="_fixdata" config="[[config]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}"></locals-object>
+   <template is="dom-if" if="{{_is(renderstate,'open')}}">
     <locals-dataobject on-state-changed="_datastatechanged" state="{{datastate}}" config="[[dataconfig]]"></locals-dataobject>
    </template>
   </template>
@@ -59,7 +58,7 @@ Example:
           notify: true
         },
 
-        state: {
+        renderstate: {
           type: String          
         }
       },
@@ -74,10 +73,10 @@ Example:
 
 
       _fixdata: function(e){
-        console.log('fix data',e.detail);
+        // console.log('fix data',e.detail);
 
-        console.log('color of body',e.detail[this.layerindex['body']][1]);
-        console.log('color of head',e.detail[this.layerindex['head']][1]);
+        // console.log('color of body',e.detail[this.layerindex['body']][1]);
+        // console.log('color of head',e.detail[this.layerindex['head']][1]);
 
         // copy head color to body color
         if (e.detail[this.layerindex['head']][1] != e.detail[this.layerindex['body']][1]){
