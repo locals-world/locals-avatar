@@ -29,8 +29,12 @@ Example:
 <dom-module id="locals-avatar">
   <template>
    <locals-object on-internalstatechange="_fixdata" config="[[config]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}"></locals-object>
+   <template is="dom-if" if="{{_is(renderstate,'closed')}}">
+    <locals-dataobject on-state-changed="_datastatechanged" state="{{datastate}}" config="[[dataconfig]]" mode="preview"></locals-dataobject>
+   </template>
+
    <template is="dom-if" if="{{_is(renderstate,'open')}}">
-    <locals-dataobject on-state-changed="_datastatechanged" state="{{datastate}}" config="[[dataconfig]]"></locals-dataobject>
+    <locals-dataobject on-state-changed="_datastatechanged" state="{{datastate}}" config="[[dataconfig]]" mode="view"></locals-dataobject>
    </template>
   </template>
 
