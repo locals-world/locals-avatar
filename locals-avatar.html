@@ -28,8 +28,8 @@ Example:
 
 <dom-module id="locals-avatar">
   <template>
-   <locals-object on-internalstatechange="_fixdata" config="[[config]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}"></locals-object>
-   <locals-dataobject on-state-changed="_datastatechanged" state="{{datastate}}" config="[[dataconfig]]" renderstate="{{renderstate}}"></locals-dataobject>
+   <locals-object on-internalstatechange="_fixdata" config="[[config]]" objectdata="[[objectdata]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}"></locals-object>
+   <locals-dataobject hashfunction="{{hashfunction}}" on-state-changed="_datastatechanged" objectdata="[[objectdata]]" state="{{datastate}}" config="[[dataconfig]]" renderstate="{{renderstate}}"></locals-dataobject>
 
   </template>
 
@@ -59,6 +59,12 @@ Example:
 
         renderstate: {
           type: String          
+        },
+        objectdata: {
+          type: Object
+        },
+        hashfunction: {
+          type: Function
         }
       },
 
