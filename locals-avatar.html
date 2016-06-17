@@ -560,14 +560,14 @@ Example:
         // Use this to clean up anything you did in `attached`.
       },
 
-      _visualstatechanged: function() {
+      _visualstatechanged: function(e) {
         //console.log('Visual state changed');
-        this.fire('visual-state-changed',this.visualstate);
+        this.fire('visual-state-changed',e.detail);
       },
 
-      _datastatechanged: function() {
+      _datastatechanged: function(e) {
         //console.log('Data state changed');
-        this.fire('data-state-changed',this.datastate);
+        this.fire('data-state-changed',e.detail);
       },
 
 
