@@ -550,10 +550,12 @@ Example:
       attached: function() {
         var user = document.querySelector('locals-user');
         var self = this;
-        user.addEventListener('newblock', function() {
-
-          var validations = self.$.ldataobject.getValidations();
-        });
+        //debugger;
+        if (this.renderstate !== 'dataview'){
+          user.addEventListener('newblock', function() {
+            var validations = self.$.ldataobject.getValidations();
+          });          
+        }
       },
 
       detached: function() {
