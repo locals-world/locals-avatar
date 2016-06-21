@@ -29,7 +29,7 @@ Example:
 <dom-module id="locals-avatar">
   <template>
    <locals-object on-internalstatechange="_fixdata" config="[[config]]" objectdata="[[objectdata]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}"></locals-object>
-   <locals-dataobject hashfunction="{{hashfunction}}" on-state-changed="_datastatechanged" objectdata="[[objectdata]]" state="{{datastate}}" config="[[dataconfig]]" renderstate="{{renderstate}}"></locals-dataobject>
+   <locals-dataobject id="ldataobject" hashfunction="{{hashfunction}}" on-state-changed="_datastatechanged" objectdata="[[objectdata]]" state="{{datastate}}" config="[[dataconfig]]" renderstate="{{renderstate}}"></locals-dataobject>
 
   </template>
 
@@ -68,6 +68,9 @@ Example:
         }
       },
 
+      _newblock: function(){
+       
+      },
 
       _is: function(a, b) {
         if (b === undefined){
@@ -545,12 +548,12 @@ Example:
       },
 
       attached: function() {
-        // `attached` fires once the element and its parents have been inserted
-        // into a document.
-        //
-        // This is a good place to perform any work related to your element's
-        // visual state or active behavior (measuring sizes, beginning animations,
-        // loading resources, etc).
+        var user = document.querySelector('locals-user');
+        var self = this;
+        user.addEventListener('newblock', function() {
+
+          var validations = self.$.ldataobject.getValidations();
+        });
       },
 
       detached: function() {
