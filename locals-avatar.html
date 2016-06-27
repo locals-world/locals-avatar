@@ -47,14 +47,35 @@ Example:
         */
         visualstate: {
           type: Array,
-          notify: true
+          notify: true,
+          value:
+
+            [
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, "5"],
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+          ]
+
         },
         /* configuration of the object's data state.
          can be set on initialisation - data is returned to this variable
         */
         datastate: {
           type: Object,
-          notify: true
+          notify: true,
+          value: {
+            "firstname": "",
+            "lastname": "",
+            "birthplace": "",
+            "birthdate": ""
+          },
+
         },
 
         renderstate: {
