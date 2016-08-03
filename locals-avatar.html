@@ -28,7 +28,25 @@ Example:
 
 <dom-module id="locals-avatar">
   <template>
-   <locals-object on-internalstatechange="_fixdata" config="[[config]]" objectdata="[[objectdata]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}"></locals-object>
+    <style>
+    .avatarbg {
+      width: var(--avatarbg-size);
+      height: var(--avatarbg-size);
+      margin: var(--avatararea-margin);
+      border-radius: 50%;
+      background-position: center;
+      background: url(../../images/locals-bg3.png);
+      background-size: var(--bg-size);
+    }
+    locals-object {
+      position: absolute;
+    }
+    </style>
+
+   <locals-object on-internalstatechange="_fixdata" config="[[config]]" objectdata="[[objectdata]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}" mode="{{mode}}"></locals-object>
+    <div class="avatarbg"></div>
+
+
 <!--    <locals-dataobject id="ldataobject" hashfunction="{{hashfunction}}" on-state-changed="_datastatechanged" objectdata="[[objectdata]]" state="{{datastate}}" config="[[dataconfig]]" renderstate="{{renderstate}}"></locals-dataobject>
  -->
   </template>
@@ -84,7 +102,11 @@ Example:
         },
         hashfunction: {
           type: Function
-        }
+        },
+       sizeview: {
+        type: String,
+        observer: '_sizeview'
+        },     
       },
 
       _newblock: function(){
@@ -885,6 +907,60 @@ Example:
         //console.log('Data state changed');
         this.fire('data-state-changed',e.detail);
       },
+
+_sizeview: function(){
+    if (this.renderstate == 'visual'){
+    switch(this.sizeview) {
+      case 'phone':
+      this.customStyle['--avatararea-margin'] = '10px';
+      this.customStyle['--avatarbg-size'] = '100px';
+      this.customStyle['--bg-size'] = 'auto 100px';
+      this.updateStyles();
+      break;
+      case 'desktop':
+      this.customStyle['--avatararea-margin'] = '11px';
+      this.customStyle['--avatarbg-size'] = '110px';
+      this.customStyle['--bg-size'] = 'auto 110px';
+
+      this.updateStyles();
+      break;
+      case 'xlarge':
+      this.customStyle['--avatararea-margin'] = '15px';
+      this.customStyle['--avatarbg-size'] = '150px';
+      this.customStyle['--bg-size'] = 'auto 150px';
+
+      this.updateStyles();
+      break;
+      default:
+    }
+  };
+    if (this.renderstate == 'inprofile'){
+    switch(this.sizeview) {
+      case 'phone':
+      this.customStyle['--avatararea-margin'] = '10px';
+      this.customStyle['--avatarbg-size'] = '120px';
+      this.customStyle['--bg-size'] = 'auto 120px';
+      this.updateStyles();
+      break;
+      case 'desktop':
+      this.customStyle['--avatararea-margin'] = '11px';
+      this.customStyle['--avatarbg-size'] = '110px';
+      this.customStyle['--bg-size'] = 'auto 110px';
+
+      this.updateStyles();
+      break;
+      case 'xlarge':
+      this.customStyle['--avatararea-margin'] = '15px';
+      this.customStyle['--avatarbg-size'] = '150px';
+      this.customStyle['--bg-size'] = 'auto 150px';
+
+      this.updateStyles();
+      break;
+      default:
+    }
+  };
+
+  },
 
 
     });
