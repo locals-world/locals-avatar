@@ -1,3 +1,5 @@
+
+
 <!--
 @license
 Copyright (c) 2016 A-labs. All rights reserved.
@@ -29,7 +31,19 @@ Example:
 <dom-module id="locals-avatar">
   <template>
     <style>
-    .avatarbg {
+
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+
+    .avatartotal {
+      @apply(--layout-horizontal);
+      @apply(--layout-center-center);
+      width: 100%;
+      height: 100%;
+    }
+/*    .avatarbg {
       width: var(--avatarbg-size);
       height: var(--avatarbg-size);
       margin: var(--avatararea-margin);
@@ -37,15 +51,33 @@ Example:
       background-position: center;
       background: url(../../images/locals-bg3.png);
       background-size: var(--bg-size);
+    }*/
+
+    .avatarbg {
+      width: 84%;
+      height: 84%;
+      margin: 8%;
+      border-radius: 50%;
+      background-position: center;
+      background: url(../../images/locals-bg3.png);
+      background-size: auto 100%;
     }
-    locals-object {
+
+    .absolutepos {
       position: absolute;
     }
     </style>
 
-   <locals-object on-internalstatechange="_fixdata" config="[[config]]" objectdata="[[objectdata]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}" mode="{{mode}}"></locals-object>
+  <template is="dom-if" if="{{!_is(renderstate,'editstate')}}">
+    <div class="avatartotal">
+   <locals-object class="absolutepos" on-internalstatechange="_fixdata" config="[[config]]" objectdata="[[objectdata]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}"></locals-object>
     <div class="avatarbg"></div>
+    </div>
+    </template>
 
+  <template is="dom-if" if="{{_is(renderstate,'editstate')}}">
+   <locals-object on-internalstatechange="_fixdata" config="[[config]]" objectdata="[[objectdata]]" state="{{visualstate}}" on-state-changed="_visualstatechanged" renderstate="{{renderstate}}"></locals-object>
+   </template>
 
 <!--    <locals-dataobject id="ldataobject" hashfunction="{{hashfunction}}" on-state-changed="_datastatechanged" objectdata="[[objectdata]]" state="{{datastate}}" config="[[dataconfig]]" renderstate="{{renderstate}}"></locals-dataobject>
  -->
@@ -63,22 +95,22 @@ Example:
         /* Configuration of the avatar's visual state.
         can be set on initialisation - data is returned to this variable.
         */
-        visualstate: {
-          type: Array,
-          notify: true,
-          value:
+        // visualstate: {
+        //   type: Array,
+        //   notify: true,
+        //   value:
 
-            [
-            [0, 0],
-            [0, 0],
-            [0, 0],
-            [0, 0],
-            [0, 0],
-            [0, 0],
-            [0, 0]
-          ]
+        //     [
+        //     [0, 0],
+        //     [0, 0],
+        //     [0, 0],
+        //     [0, 0],
+        //     [0, 0],
+        //     [0, 0],
+        //     [0, 0]
+        //   ]
 
-        },
+        // },
         /* configuration of the object's data state.
          can be set on initialisation - data is returned to this variable
         */
@@ -95,8 +127,16 @@ Example:
         },
 
         renderstate: {
-          type: String          
+          type: String,
+          observer: '_renderstate'
         },
+
+        editavatar: {
+          type:Boolean,
+          value:false
+        },
+
+
         objectdata: {
           type: Object
         },
@@ -908,6 +948,7 @@ Example:
         this.fire('data-state-changed',e.detail);
       },
 
+
 _sizeview: function(){
     if (this.renderstate == 'visual'){
     switch(this.sizeview) {
@@ -961,6 +1002,8 @@ _sizeview: function(){
   };
 
   },
+
+
 
 
     });
